@@ -384,11 +384,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if( (selectedSize == 'M') && (selectedColor =='Black')){
         addToCart('dark-winter-jacket',49856844497200,1)
         this_cartDrawer.refresh(true);
+        document.getElementsByTagName('cart-drawer')[0].open();
+      }else{
+         document.getElementsByTagName('cart-drawer')[0].open();
       }
        popup.style.display = "none";
       // function to update cart and display cart drawer
       
-      document.getElementsByTagName('cart-drawer')[0].open();
+     
       
     })
     .catch(console.error);

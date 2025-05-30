@@ -1,0 +1,447 @@
+{% schema %}
+{
+  "name": "Product Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Tisso vision in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Product Thumbnail",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Product Gallery",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+    <div class="product-gallery-section page-width">
+  <h2 class="product-gallery-section-tittle">{{ section.settings.section_title }}</h2>
+  <div class="gproduct-grid "> {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product.handle] %}
+        {% if product %}
+        <div class="gproduct-thumb" data-product='{{ product | json | escape }}'> <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}"> </div>
+        {% endif %}
+        {% endfor %} </div>
+</div>
+    <!-- Popup -->
+    <div id="product-popup" class="popup" style="display:none;">
+  <div class="popup-content"> <span class="popup-close" id="popup-close">&times;</span>
+        <div class="popup-top-info"> <img id="popup-image" src="" alt="" class="product-image-pupup" />
+      <div class="product-top-content">
+            <h3 id="popup-title"></h3>
+            <p id="popup-price"></p>
+            <span id="popup-description"></span> </div>
+    </div>
+        <div id="popup-color-wrapper">
+      <label>Color</label>
+      <div id="popup-colors" class="swatch-group"></div>
+    </div>
+        <div id="popup-size-wrapper">
+      <label>Size</label>
+      <div class="selectbox">
+            <select id="popup-size-select" class="selectsize">
+        </select>
+          </div>
+    </div>
+        <button id="add-to-cart-btn" class="product-form__submit ">ADD TO CART →</button>
+      </div>
+</div>
+    <style>
+/* Product listing gallery */
+.gproduct-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+
+.gproduct-thumb {
+  cursor: pointer;
+  text-align: center; 
+  max-height:350px;
+
+}
+.gproduct-thumb img{
+  object-fit: cover;
+  width: 100%;
+  max-width:100%;
+  height:350px;
+}
+.product-gallery-section-tittle{
+  font-size:36px;
+  line-height:40px;
+  font-weight:400;
+  font-family:Lustria;
+}
+
+@media screen and (max-width: 749px) {
+.gproduct-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.gproduct-thumb {
+  max-height:200px;
+}
+.gproduct-thumb img{
+  height:200px;
+}
+}
+  
+/* popup box css */
+.popup {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.popup-content {
+  background: white;
+  padding: 30px 20px;
+  max-width: 300px;
+  width: 100%;
+  position: relative;
+}
+.popup-close {
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  font-size: 24px;
+  width:24px;
+  height:24px;
+  cursor: pointer;
+  color: #000;
+}
+
+.popup-top-info {
+  display: flex;
+ align-items:flex-start;
+}
+
+.product-image-pupup {
+	max-width:40%;
+	object-fit: cover;
+	width: 100%;
+	height:140px;
+}
+.product-top-content {
+  padding: 0 1rem;
+  display:flex;
+  flex-direction:column;
+  
+}
+#popup-title{
+  font-size:16px;
+  font-family:Jost;
+  font-weight:300;
+  margin-bottom:5px;
+}
+#popup-price{
+  font-size:16px;
+  font-family:Lustria;
+  font-weight:800;
+}
+#popup-description{
+  font-size:13px;
+  line-height:15px;
+  font-family:Jost;
+  font-weight:normal;
+}
+#popup-description,#popup-title,#popup-price{
+  margin:0px;
+}
+#popup-color-wrapper{
+  margin-top:10px;
+}
+/* popup end here */
+  
+/* Select dropdown */
+.selectbox > select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: #fff;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#000;
+   cursor:pointer;
+  
+}
+.selectbox select::-ms-expand {
+   display: none;
+}
+.selectbox {
+   position: relative;
+   display: flex;
+   width: 260px;
+   height: 3em;
+   line-height: 3;
+   background: #fff;
+   overflow: hidden;
+   font-size:16px;
+   border:1px solid #000;
+}
+.selectbox::after {
+   content: '\25BC';
+   position: absolute;
+   border-left:1px solid #000;
+   color:#000;
+   top: 0;
+   right: 0;
+   padding: 0 1em;
+   background: #fff;
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+}
+.selectbox:hover::after {
+   color: #000;
+}
+/* Select dropdown  end here*/
+
+
+/* Color swatch starts */
+.swatch-group {
+  display: flex;
+  gap: 0px;
+  margin: 10px 0;
+}
+.swatch {
+  padding: 8px 14px;
+  border: 1px solid #000;
+  cursor: pointer;
+  background-color: #fff;
+  min-width: 60px;
+  text-align: center;
+  border-left: 10px solid;
+  outline-style:auto;
+  position:relative;
+  width:50%;
+}
+ .swatch::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background-color: #000;
+    height: 100%;
+    bottom: 0;
+    left: -1px;
+}
+.swatch.active {
+  background-color: #000;
+  color: #fff;
+}
+.swatch.active::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    background-color: transparent;
+    height: calc(100% - 2px);
+    top: 1px;
+    left: -8px;
+  border:1px solid #000;
+}
+/* Color swatch end */
+  
+.product-form__submit {
+  width: 100%;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border:0px!important;
+  -shadow-opacity: 0!important;
+  --shadow-visible: 0!important;
+  --border-offset: 0!important;
+  --border-opacity: 0!important;
+  background: linear-gradient(to left, #000 50%, #FFF544 50%) right;
+  background-size: 200%;
+  transition: .5s ease-out;
+}
+  .product-form__submit:hover{
+    background-position: left;
+    color:#000;
+    
+  }
+
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("product-popup");
+  const popupImage = document.getElementById("popup-image");
+  const popupTitle = document.getElementById("popup-title");
+  const popupPrice = document.getElementById("popup-price");
+  const popupDesc = document.getElementById("popup-description");
+  const popupColors = document.getElementById("popup-colors");
+  const popupSizes = document.getElementById("popup-size-select");
+  const popupClose = document.getElementById("popup-close");
+  const addToCartBtn = document.getElementById("add-to-cart-btn");
+
+  const this_cartDrawer = document.querySelector('cart-drawer');
+
+
+  let currentVariants = [];
+
+  // On click each product thumbnail show pop up
+  document.querySelectorAll(".gproduct-thumb").forEach((thumb) => {
+    thumb.addEventListener("click", function () {
+
+      // Get product data attribute which will be use to show in the popup
+      const product = JSON.parse(this.getAttribute("data-product"));
+      currentVariants = product.variants; //  product variant
+
+      popupImage.src = product.featured_image; //  product image
+      popupTitle.textContent = product.title; // product name
+      popupDesc.textContent  = product.description.replace(/<[^>]*>?/gm, '') || ''; // product description remove p tag
+      popupPrice.textContent = (product.price / 100).toFixed(2) + ' ' + Shopify.currency.active; // product price with currency
+
+      const sizeOptions = [...new Set(product.variants.map(v => v.option1))]; // get product size from variant array
+      const colorOptions = [...new Set(product.variants.map(v => v.option2))]; // get product color from variant array
+
+      // loop to create size dropdown
+      popupSizes.innerHTML = '';
+      sizeOptions.forEach((size) => {
+        const opt = document.createElement('option');
+        opt.value = size;
+        opt.textContent = size;
+        popupSizes.appendChild(opt);
+      });
+
+        // loop to create color boxes
+        popupColors.innerHTML = '';
+        colorOptions.forEach((color, idx) => {
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.textContent = color;
+        swatch.dataset.color = color;
+        swatch.style.setProperty('border-left-color', color); // for variant color
+        popupColors.appendChild(swatch);
+      });
+
+      popup.style.display = "flex";
+    });
+  });
+
+  popupClose.addEventListener("click", () => popup.style.display = "none");
+  window.addEventListener("click", (e) => {
+    if (e.target === popup) popup.style.display = "none";
+  });
+
+  popupColors.addEventListener("click", function (e) {
+    if (e.target.classList.contains('swatch')) {
+      popupColors.querySelectorAll('.swatch').forEach(el => el.classList.remove('active'));
+      e.target.classList.add('active');
+    }
+  });
+
+  addToCartBtn.addEventListener("click", function () {
+     let cartDrawer = document.querySelector('cart-drawer');
+    const selectedSize = popupSizes.value;
+    const selectedColor = popupColors.querySelector('.swatch.active')?.dataset.color;
+    const matched = currentVariants.find(v => v.option1 === selectedSize && v.option2 === selectedColor);
+    if (!matched) {
+      alert("Please select a valid variant.");
+      return;
+    }
+    // add product to cart
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: matched.id, quantity: 1 })
+    })
+    .then(res => res.ok ? res.json() : Promise.reject("Add to cart failed"))
+    .then(() => {
+     
+     this_cartDrawer.refresh(true);
+      // if size is M and color is Black then add Soft Winter Jacket too // 49856844497200
+      if( (selectedSize == 'M') && (selectedColor =='Black')){
+        addToCart('dark-winter-jacket',49856844497200,1)
+        this_cartDrawer.refresh(true);
+      }
+       popup.style.display = "none";
+      // function to update cart and display cart drawer
+      
+      document.getElementsByTagName('cart-drawer')[0].open();
+      
+    })
+    .catch(console.error);
+  });
+
+  // function to update cart and update to darwer so when we show the drawer it shuld show updated cart
+  function updateCartDrawer(){
+    fetch('/cart.js')
+     .then(response => response.json())
+     .then(cart => {
+       console.log(cart);
+         updateCartDrawerUI(cart);
+     })
+     .catch(error => console.error('Error:', error));
+  }
+  
+ // function to update cart html display
+ function updateCartDrawerUI(cart) {
+           fetch('document.querySelector{routes.cart_url}?section_id=cart-drawer')
+            .then((response) => response.text())
+            .then((responseText) => {
+            const html = new DOMParser().parseFromString(responseText, 'text/html');
+            const selectors = ['#CartDrawer-CartItems', '.cart-drawer__footer'];
+            for (const selector of selectors) {
+            const targetElement = document.querySelector(selector);
+            const sourceElement = html.querySelector(selector);
+            if (targetElement && sourceElement) {
+            targetElement.replaceWith(sourceElement);
+            }
+            }
+             document.getElementsByTagName('cart-drawer')[0].open();
+            })
+            .catch((e) => {
+            console.error(e);
+            });
+}
+
+     async function addToCart(productHandle, variantId, quantity) {
+         const formData = new FormData();
+         formData.append('id', variantId);
+         formData.append('quantity', quantity);
+        
+
+         try {
+             const response = await fetch('/cart/add.js', {
+                 method: 'POST',
+                 body: formData
+             });
+             const data = await response.json(); // Or handle the response as needed
+             console.log('Product added to cart:', data);
+         } catch (error) {
+             console.error('Error adding product to cart:', error);
+         }
+     }
+});
+</script>

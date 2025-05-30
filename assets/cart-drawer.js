@@ -1,5 +1,5 @@
 class CartDrawer extends HTMLElement {
-  
+
 async refresh(dontRefreshCartItems) {
     try {        
         const response = this.getSectionsToRender().map((section) => section.id);

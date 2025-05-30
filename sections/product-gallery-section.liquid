@@ -378,17 +378,21 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(res => res.ok ? res.json() : Promise.reject("Add to cart failed"))
     .then(() => {
-     
-     this_cartDrawer.refresh(true);
+        this_cartDrawer.refresh(true);
       // if size is M and color is Black then add Soft Winter Jacket too // 49856844497200
       if( (selectedSize == 'M') && (selectedColor =='Black')){
         addToCart('dark-winter-jacket',49856844497200,1)
         this_cartDrawer.refresh(true);
       }
        popup.style.display = "none";
-      // function to update cart and display cart drawer
       
-      document.getElementsByTagName('cart-drawer')[0].open();
+      // function to update cart and display cart drawer
+      if (window.matchMedia("(max-width: 749px)").matches) {
+          window.location.href = '/cart';      
+      } else {
+          document.getElementsByTagName('cart-drawer')[0].open();
+      }
+      
       
     })
     .catch(console.error);

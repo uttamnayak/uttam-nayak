@@ -33,6 +33,52 @@
     },
     "product_gallery_section_KAdVCB": {
       "type": "product-gallery-section",
+      "blocks": {
+        "product_block_ez8A4c": {
+          "type": "product_block",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_block_jkN9NA": {
+          "type": "product_block",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_block_BFkPnh": {
+          "type": "product_block",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_block_AWRjMz": {
+          "type": "product_block",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_block_GD43ak": {
+          "type": "product_block",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_block_qJAGFq": {
+          "type": "product_block",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_block_ez8A4c",
+        "product_block_jkN9NA",
+        "product_block_BFkPnh",
+        "product_block_AWRjMz",
+        "product_block_GD43ak",
+        "product_block_qJAGFq"
+      ],
       "name": "Product Gallery",
       "settings": {
         "section_title": "Tisso vision in the wild"

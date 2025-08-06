@@ -113,19 +113,19 @@
     }
   }
 
-  .promo-content {
+ .promo-content {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end; /* Push content to bottom */
   padding: 30px;
-  height: 100%;
   background-size: cover;
   background-position: center;
   color: #fff;
   overflow: hidden;
-  align-items: flex-start;
+  min-height: 400px; /* Optional: ensures enough height for visual impact */
 }
+
 
 .promo-content::before {
   content: "";

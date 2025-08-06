@@ -187,12 +187,118 @@
         "button_url": "shopify://collections",
         "column_image": "shopify://shop_images/striped-blouse-fashion_925x_1a1ff947-7950-4779-91a0-6583c619c0e5.jpg"
       }
+    },
+    "lash_brand_custom_section_NPYzp7": {
+      "type": "lash-brand-custom-section",
+      "blocks": {
+        "feature_cKRm4c": {
+          "type": "feature",
+          "settings": {
+            "block_image": "shopify://shop_images/user.png",
+            "block_heading": "Real Results, Fast",
+            "block_heading_color": "#333333",
+            "block_heading_size": 18,
+            "block_text": "Visible lash and brow growth in as little as 2 weeks — clinically backed and customer proven.",
+            "block_text_color": "#666666",
+            "block_text_size": 14,
+            "block_background_color": "#f8f9fa",
+            "block_border_color": "#e9ecef",
+            "block_border_width": 1,
+            "block_shadow_x": 0,
+            "block_shadow_y": 4,
+            "block_shadow_blur": 12,
+            "block_shadow_color": "#000000",
+            "block_shadow_opacity": 0.1
+          }
+        },
+        "feature_yci6YA": {
+          "type": "feature",
+          "settings": {
+            "block_image": "shopify://shop_images/user.png",
+            "block_heading": "100,000+ 5-Star Reviews",
+            "block_heading_color": "#333333",
+            "block_heading_size": 18,
+            "block_text": "A global community of beauty lovers trust SUPERLASH to deliver results — and we do.",
+            "block_text_color": "#666666",
+            "block_text_size": 14,
+            "block_background_color": "#f8f9fa",
+            "block_border_color": "#e9ecef",
+            "block_border_width": 1,
+            "block_shadow_x": 0,
+            "block_shadow_y": 4,
+            "block_shadow_blur": 12,
+            "block_shadow_color": "#000000",
+            "block_shadow_opacity": 0.1
+          }
+        },
+        "feature_AACG8k": {
+          "type": "feature",
+          "settings": {
+            "block_image": "shopify://shop_images/user.png",
+            "block_heading": "Safe for Sensitive Eyes",
+            "block_heading_color": "#333333",
+            "block_heading_size": 18,
+            "block_text": "Dermatologist-tested, non-irritating formulas designed for even the most delicate skin.",
+            "block_text_color": "#666666",
+            "block_text_size": 14,
+            "block_background_color": "#f8f9fa",
+            "block_border_color": "#e9ecef",
+            "block_border_width": 1,
+            "block_shadow_x": 0,
+            "block_shadow_y": 4,
+            "block_shadow_blur": 12,
+            "block_shadow_color": "#000000",
+            "block_shadow_opacity": 0.1
+          }
+        },
+        "feature_YEtArL": {
+          "type": "feature",
+          "settings": {
+            "block_image": "shopify://shop_images/user.png",
+            "block_heading": "Clean, Cruelty-Free Beauty",
+            "block_heading_color": "#333333",
+            "block_heading_size": 18,
+            "block_text": "We believe in performance without compromise — no harsh chemicals, no animal testing, ever.",
+            "block_text_color": "#666666",
+            "block_text_size": 14,
+            "block_background_color": "#f8f9fa",
+            "block_border_color": "#e9ecef",
+            "block_border_width": 1,
+            "block_shadow_x": 0,
+            "block_shadow_y": 4,
+            "block_shadow_blur": 12,
+            "block_shadow_color": "#000000",
+            "block_shadow_opacity": 0.1
+          }
+        }
+      },
+      "block_order": [
+        "feature_cKRm4c",
+        "feature_yci6YA",
+        "feature_AACG8k",
+        "feature_YEtArL"
+      ],
+      "name": "Lash Brand Section",
+      "settings": {
+        "section_heading": "The Lash Brand Women Trust for Real Results, Clean Ingredients, and Effortless Confidence",
+        "heading_color": "#333333",
+        "heading_size": 42,
+        "section_description": "SUPERLASH isn't just another beauty brand — we're your go-to for transformative lash and brow care that's safe, effective, and rooted in clean beauty values. With visible results in weeks and thousands of glowing reviews, we're proud to be setting a new standard in lash enhancement.",
+        "description_color": "#666666",
+        "description_size": 16,
+        "background_color": "#fef6f6",
+        "button_text": "Shop Now",
+        "button_url": "shopify://collections",
+        "button_bg_color": "#ff6b9d",
+        "button_text_color": "#ffffff"
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
     "dual_promo_custom_KHJGf8",
-    "superlash_different_TUFphk"
+    "superlash_different_TUFphk",
+    "lash_brand_custom_section_NPYzp7"
   ]
 }

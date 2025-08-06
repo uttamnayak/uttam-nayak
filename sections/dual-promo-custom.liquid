@@ -126,12 +126,16 @@
 }
 
   .promo-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 15px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
+  display: inline-block; /* ensures it wraps to content */
+  width: auto;            /* prevents 100% width */
+  padding: 10px 20px;
+  margin-top: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
 
   .section-header {
     text-align: center;

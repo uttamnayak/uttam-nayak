@@ -66,6 +66,12 @@
             "description": "Clean, gentle, and powerful serum for stunning lashes.",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/all",
+            "small_heading_color": "#ff69b4",
+            "small_heading_size": 16,
+            "main_heading_color": "#ffffff",
+            "main_heading_size": 28,
+            "description_color": "#ffffff",
+            "description_size": 16,
             "background_color": "#ffffff",
             "text_color": "#000000",
             "hover_text_color": "#ffffff",
@@ -82,6 +88,12 @@
             "description": "Clean, gentle, and powerful serum for stunning lashes.",
             "button_label": "Shop Now",
             "button_link": "shopify://collections/all",
+            "small_heading_color": "#ff69b4",
+            "small_heading_size": 16,
+            "main_heading_color": "#ffffff",
+            "main_heading_size": 28,
+            "description_color": "#ffffff",
+            "description_size": 16,
             "background_color": "#ffffff",
             "text_color": "#000000",
             "hover_text_color": "#ffffff",
@@ -100,11 +112,87 @@
         "section_description": "Explore our curated collection of lash and brow products tailored to your beauty needs.",
         "section_padding": 40
       }
+    },
+    "superlash_different_TUFphk": {
+      "type": "superlash-different",
+      "blocks": {
+        "feature_UnpHf4": {
+          "type": "feature",
+          "settings": {
+            "feature_heading": "Visible Results in 2 Weeks",
+            "feature_heading_color": "#f4c2c2",
+            "feature_heading_size": 18,
+            "feature_text": "Clinically-backed growth for longer, fuller lashes fast.",
+            "feature_text_color": "#cccccc",
+            "feature_text_size": 14
+          }
+        },
+        "feature_pXT64L": {
+          "type": "feature",
+          "settings": {
+            "feature_heading": "Dermatologist-Tested & Safe",
+            "feature_heading_color": "#f4c2c2",
+            "feature_heading_size": 18,
+            "feature_text": "Gentle on sensitive eyes and skin, with proven performance.",
+            "feature_text_color": "#cccccc",
+            "feature_text_size": 14
+          }
+        },
+        "feature_6A9nz3": {
+          "type": "feature",
+          "settings": {
+            "feature_heading": "100,000+ 5-Star Reviews",
+            "feature_heading_color": "#f4c2c2",
+            "feature_heading_size": 18,
+            "feature_text": "Trusted and loved by a global community of lash lovers.",
+            "feature_text_color": "#cccccc",
+            "feature_text_size": 14
+          }
+        },
+        "feature_eaf6fa": {
+          "type": "feature",
+          "settings": {
+            "feature_heading": "Clean & Cruelty-Free",
+            "feature_heading_color": "#f4c2c2",
+            "feature_heading_size": 18,
+            "feature_text": "No harsh chemicals. No animal testing. Just beauty that feels good.",
+            "feature_text_color": "#cccccc",
+            "feature_text_size": 14
+          }
+        }
+      },
+      "block_order": [
+        "feature_UnpHf4",
+        "feature_pXT64L",
+        "feature_6A9nz3",
+        "feature_eaf6fa"
+      ],
+      "name": "Superlash Different",
+      "settings": {
+        "section_heading": "What Makes Superlash Different",
+        "section_heading_color": "#ffffff",
+        "section_heading_size": 36,
+        "section_description": "Browse our best-in-class serums by category — whether you're looking to enhance lashes, define brows, or grab a bundle, we've made it easy to shop what suits you best.",
+        "section_description_color": "#cccccc",
+        "section_description_size": 16,
+        "section_bg_color": "#2d2d2d",
+        "column_heading": "Why Thousands Trust Superlash",
+        "column_heading_color": "#ffffff",
+        "column_heading_size": 28,
+        "column_description": "From fast, visible results to clean, cruelty-free formulas. Superlash is built on beauty that works — safely, gently, and effortlessly. See why over 100,000 customers call it their lash essential.",
+        "column_description_color": "#cccccc",
+        "column_description_size": 16,
+        "column_bg_color": "#15171b",
+        "button_text": "Shop Now",
+        "button_url": "shopify://collections",
+        "column_image": "shopify://shop_images/striped-blouse-fashion_925x_1a1ff947-7950-4779-91a0-6583c619c0e5.jpg"
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "dual_promo_custom_KHJGf8"
+    "dual_promo_custom_KHJGf8",
+    "superlash_different_TUFphk"
   ]
 }

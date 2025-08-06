@@ -68,9 +68,17 @@
   {% for block in section.blocks %}
     <div class="promo-block" style="background-color: {{ block.settings.background_color }};">
       <div class="promo-content" style="background-image: url({{ block.settings.background_image | image_url }});">
-        <h4 style="color: {{ block.settings.text_color }};">{{ block.settings.small_heading }}</h4>
-          <h2 style="color: {{ block.settings.text_color }};">{{ block.settings.main_heading }}</h2>
-          <p style="color: {{ block.settings.text_color }};">{{ block.settings.description }}</p>
+        <h4 style="color: {{ block.settings.small_heading_color }}; font-size: {{ block.settings.small_heading_size }}px;">
+  {{ block.settings.small_heading }}
+</h4>
+
+          <h2 style="color: {{ block.settings.main_heading_color }}; font-size: {{ block.settings.main_heading_size }}px;">
+  {{ block.settings.main_heading }}
+</h2>
+
+          <p style="color: {{ block.settings.description_color }}; font-size: {{ block.settings.description_size }}px;">
+  {{ block.settings.description }}
+</p>
           <a href="{{ block.settings.button_link }}" class="promo-button"
              style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.text_color }};"
              onmouseover="this.style.backgroundColor='{{ block.settings.button_hover_bg_color }}'; this.style.color='{{ block.settings.hover_text_color }}';"

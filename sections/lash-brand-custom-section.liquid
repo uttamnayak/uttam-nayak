@@ -69,6 +69,40 @@
     transform: translateY(-5px);
   }
   
+  /* Staggered positioning for desktop */
+  .lash-brand-feature:nth-child(1) {
+    transform: translateY(-20px);
+  }
+  
+  .lash-brand-feature:nth-child(2) {
+    transform: translateY(20px);
+  }
+  
+  .lash-brand-feature:nth-child(3) {
+    transform: translateY(-20px);
+  }
+  
+  .lash-brand-feature:nth-child(4) {
+    transform: translateY(20px);
+  }
+  
+  /* Hover states maintain staggered positioning */
+  .lash-brand-feature:nth-child(1):hover {
+    transform: translateY(-25px);
+  }
+  
+  .lash-brand-feature:nth-child(2):hover {
+    transform: translateY(15px);
+  }
+  
+  .lash-brand-feature:nth-child(3):hover {
+    transform: translateY(-25px);
+  }
+  
+  .lash-brand-feature:nth-child(4):hover {
+    transform: translateY(15px);
+  }
+  
   .lash-brand-feature-icon {
     width: 60px;
     height: 60px;
@@ -129,6 +163,21 @@
       grid-template-columns: 1fr;
       gap: 20px;
       order: -1;
+    }
+    
+    /* Reset staggered positioning on mobile */
+    .lash-brand-feature:nth-child(1),
+    .lash-brand-feature:nth-child(2),
+    .lash-brand-feature:nth-child(3),
+    .lash-brand-feature:nth-child(4) {
+      transform: translateY(0);
+    }
+    
+    .lash-brand-feature:nth-child(1):hover,
+    .lash-brand-feature:nth-child(2):hover,
+    .lash-brand-feature:nth-child(3):hover,
+    .lash-brand-feature:nth-child(4):hover {
+      transform: translateY(-5px);
     }
     
     .lash-brand-feature {

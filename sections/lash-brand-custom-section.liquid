@@ -1,0 +1,528 @@
+{% comment %}
+  The Lash Brand Custom Section
+  Features: Responsive two-column layout with customizable blocks and styling options
+{% endcomment %}
+
+<style>
+  .lash-brand-section {
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lash-brand-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .lash-brand-content {
+    z-index: 2;
+    position: relative;
+  }
+  
+  .lash-brand-heading {
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: bold;
+  }
+  
+  .lash-brand-description {
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .lash-brand-button {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .lash-brand-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  .lash-brand-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .lash-brand-feature {
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .lash-brand-feature:hover {
+    transform: translateY(-5px);
+  }
+  
+  .lash-brand-feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lash-brand-feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .lash-brand-feature-heading {
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  .lash-brand-feature-text {
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  
+  /* Tablet Styles */
+  @media (max-width: 1024px) {
+    .lash-brand-section {
+      padding: 50px 15px;
+    }
+    
+    .lash-brand-container {
+      gap: 40px;
+    }
+    
+    .lash-brand-features {
+      gap: 25px;
+    }
+    
+    .lash-brand-feature {
+      padding: 25px 20px;
+    }
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .lash-brand-section {
+      padding: 40px 15px;
+    }
+    
+    .lash-brand-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .lash-brand-features {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      order: -1;
+    }
+    
+    .lash-brand-feature {
+      padding: 25px 20px;
+    }
+    
+    .lash-brand-feature-icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 15px;
+    }
+    
+    .lash-brand-heading {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .lash-brand-description {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .lash-brand-button {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 200px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .lash-brand-section {
+      padding: 30px 10px;
+    }
+    
+    .lash-brand-container {
+      gap: 30px;
+    }
+    
+    .lash-brand-features {
+      gap: 15px;
+    }
+    
+    .lash-brand-feature {
+      padding: 20px 15px;
+    }
+  }
+</style>
+
+<section class="lash-brand-section" 
+         {% if section.settings.background_color != blank %}
+           style="background-color: {{ section.settings.background_color }}; 
+                  {% if section.settings.background_image != blank %}
+                    background-image: url('{{ section.settings.background_image | image_url: width: 1920, height: 1080 }}'); 
+                    background-size: cover; 
+                    background-position: center; 
+                    background-repeat: no-repeat;
+                  {% endif %}"
+         {% elsif section.settings.background_image != blank %}
+           style="background-image: url('{{ section.settings.background_image | image_url: width: 1920, height: 1080 }}'); 
+                  background-size: cover; 
+                  background-position: center; 
+                  background-repeat: no-repeat;"
+         {% endif %}>
+  
+  <div class="lash-brand-container">
+    <!-- Features Column -->
+    <div class="lash-brand-features">
+      {% for block in section.blocks %}
+        <div class="lash-brand-feature" 
+             style="background-color: {{ block.settings.block_background_color | default: '#f8f9fa' }}; 
+                    border: {{ block.settings.block_border_width | default: 1 }}px solid {{ block.settings.block_border_color | default: '#e9ecef' }}; 
+                    box-shadow: {{ block.settings.block_shadow_x | default: 0 }}px {{ block.settings.block_shadow_y | default: 4 }}px {{ block.settings.block_shadow_blur | default: 12 }}px rgba({{ block.settings.block_shadow_color | default: '#000000' | remove: '#' | split: '' | map: 'upcase' | join: '' | slice: 0, 2 | prepend: '0x' | times: 1 }}, {{ block.settings.block_shadow_color | default: '#000000' | remove: '#' | split: '' | map: 'upcase' | join: '' | slice: 2, 2 | prepend: '0x' | times: 1 }}, {{ block.settings.block_shadow_color | default: '#000000' | remove: '#' | split: '' | map: 'upcase' | join: '' | slice: 4, 2 | prepend: '0x' | times: 1 }}, {{ block.settings.block_shadow_opacity | default: 0.1 }});">
+          
+          {% if block.settings.block_image != blank %}
+            <div class="lash-brand-feature-icon">
+              <img src="{{ block.settings.block_image | image_url: width: 120, height: 120 }}" 
+                   alt="{{ block.settings.block_heading | escape }}"
+                   width="60"
+                   height="60">
+            </div>
+          {% endif %}
+          
+          {% if block.settings.block_heading != blank %}
+            <h3 class="lash-brand-feature-heading" 
+                style="color: {{ block.settings.block_heading_color | default: '#333333' }}; 
+                       font-size: {{ block.settings.block_heading_size | default: 18 }}px;">
+              {{ block.settings.block_heading }}
+            </h3>
+          {% endif %}
+          
+          {% if block.settings.block_text != blank %}
+            <p class="lash-brand-feature-text" 
+               style="color: {{ block.settings.block_text_color | default: '#666666' }}; 
+                      font-size: {{ block.settings.block_text_size | default: 14 }}px;">
+              {{ block.settings.block_text }}
+            </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Content Column -->
+    <div class="lash-brand-content">
+      {% if section.settings.section_heading != blank %}
+        <h2 class="lash-brand-heading" 
+            style="color: {{ section.settings.heading_color | default: '#333333' }}; 
+                   font-size: {{ section.settings.heading_size | default: 42 }}px;">
+          {{ section.settings.section_heading }}
+        </h2>
+      {% endif %}
+      
+      {% if section.settings.section_description != blank %}
+        <p class="lash-brand-description" 
+           style="color: {{ section.settings.description_color | default: '#666666' }}; 
+                  font-size: {{ section.settings.description_size | default: 16 }}px;">
+          {{ section.settings.section_description }}
+        </p>
+      {% endif %}
+      
+      {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+        <a href="{{ section.settings.button_url }}" 
+           class="lash-brand-button"
+           style="background-color: {{ section.settings.button_bg_color | default: '#ff6b9d' }}; 
+                  color: {{ section.settings.button_text_color | default: '#ffffff' }};">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lash Brand Section",
+  "tag": "section",
+  "class": "lash-brand-custom-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "The Lash Brand Women Trust for Real Results, Clean Ingredients, and Effortless Confidence"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "SUPERLASH isn't just another beauty brand — we're your go-to for transformative lash and brow care that's safe, effective, and rooted in clean beauty values. With visible results in weeks and thousands of glowing reviews, we're proud to be setting a new standard in lash enhancement."
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#ff6b9d"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "block_image",
+          "label": "Block Image"
+        },
+        {
+          "type": "text",
+          "id": "block_heading",
+          "label": "Block Heading",
+          "default": "Feature Title"
+        },
+        {
+          "type": "color",
+          "id": "block_heading_color",
+          "label": "Block Heading Color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "block_heading_size",
+          "label": "Block Heading Font Size",
+          "min": 14,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "textarea",
+          "id": "block_text",
+          "label": "Block Text",
+          "default": "Feature description goes here."
+        },
+        {
+          "type": "color",
+          "id": "block_text_color",
+          "label": "Block Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "block_text_size",
+          "label": "Block Text Font Size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Block Styling"
+        },
+        {
+          "type": "color",
+          "id": "block_background_color",
+          "label": "Block Background Color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "block_border_color",
+          "label": "Block Border Color",
+          "default": "#e9ecef"
+        },
+        {
+          "type": "range",
+          "id": "block_border_width",
+          "label": "Block Border Width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "type": "header",
+          "content": "Block Shadow Settings"
+        },
+        {
+          "type": "range",
+          "id": "block_shadow_x",
+          "label": "Shadow X Offset",
+          "min": -20,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "block_shadow_y",
+          "label": "Shadow Y Offset",
+          "min": -20,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "block_shadow_blur",
+          "label": "Shadow Blur",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "color",
+          "id": "block_shadow_color",
+          "label": "Shadow Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "block_shadow_opacity",
+          "label": "Shadow Opacity",
+          "min": 0,
+          "max": 1,
+          "step": 0.1,
+          "default": 0.1
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lash Brand Section",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "block_heading": "Real Results, Fast",
+            "block_text": "Visible lash and brow growth in as little as 2 weeks — clinically backed and customer proven."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "block_heading": "100,000+ 5-Star Reviews",
+            "block_text": "A global community of beauty lovers trust SUPERLASH to deliver results — and we do."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "block_heading": "Safe for Sensitive Eyes",
+            "block_text": "Dermatologist-tested, non-irritating formulas designed for even the most delicate skin."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "block_heading": "Clean, Cruelty-Free Beauty",
+            "block_text": "We believe in performance without compromise — no harsh chemicals, no animal testing, ever."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
